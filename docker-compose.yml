@@ -1,0 +1,25 @@
+version: "3.10"
+
+services:
+  ark_db:
+    image: postgres:14-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    container_name: ark_db
+    environment:
+      POSTGRES_DB: ArkLeap
+      POSTGRES_USER: 1234
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  django:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    container_name: django
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ark_db

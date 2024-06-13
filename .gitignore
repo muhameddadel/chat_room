@@ -1,0 +1,18 @@
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+lib/
+Scripts/
+var/
+
+
+# db
+*/migrations/00*py
+*/migrations/__*/00*
+migrations/
+
+/data/*
