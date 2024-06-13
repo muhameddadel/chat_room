@@ -1,14 +1,12 @@
 from django.urls import path
-from .views import *
+from .views import ChatRoomViewSet, MessageViewSet
 
 app_name = 'chat'
 
 urlpatterns = [
-    path('chat-rooms/', create_chat_room, name='create_chat_room'),
-    path('chat-rooms/<int:pk>/', read_chat_room, name='read_chat_room'),
-    path('chat-rooms/<int:pk>/update/', update_chat_room, name='update_chat_room'),
-    path('chat-rooms/<int:chat_room_pk>/messages/', create_message, name='create_message'),
-    path('chat-rooms/<int:chat_room_pk>/messages/search/', search_messages, name='search_messages'),
-    path('chat-rooms/<int:chat_room_pk>/messages/<int:message_pk>/', read_message, name='read_message'),
-    path('chat-rooms/<int:chat_room_pk>/messages/<int:message_pk>/update/', update_message, name='update_message'),
+    path('chat-rooms/', ChatRoomViewSet.as_view({'post': 'create'}), name='chatroom-create'),
+    path('chat-rooms/<int:pk>/', ChatRoomViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update'}), name='chatroom-detail'),
+    path('chat-rooms/<int:chat_room_pk>/messages/', MessageViewSet.as_view({'post': 'create'}), name='message-create'),
+    path('chat-rooms/<int:chat_room_pk>/messages/search/', MessageViewSet.as_view({'get': 'search'}), name='message-search'),
+    path('chat-rooms/<int:chat_room_pk>/messages/<int:pk>/', MessageViewSet.as_view({'get': 'retrieve', 'patch': 'partial_update'}), name='message-detail'),
 ]

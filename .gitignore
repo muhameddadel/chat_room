@@ -10,9 +10,4 @@ Scripts/
 var/
 
 
-# db
-*/migrations/00*py
-*/migrations/__*/00*
-migrations/
-
 /data/*
