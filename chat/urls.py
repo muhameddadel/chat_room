@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ChatRoomViewSet, MessageViewSet
+from .viewsets import ChatRoomViewSet, MessageViewSet
 
 app_name = 'chat'
 
